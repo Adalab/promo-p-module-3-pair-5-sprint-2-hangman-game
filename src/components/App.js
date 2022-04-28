@@ -5,6 +5,7 @@ import Header from './Header';
 import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
+import Form from './Form';
 
 function App() {
   //const [numberOfErrors, setNumberOfErrors] = useState(0);
@@ -49,9 +50,6 @@ function App() {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
   const handleInput = (event) => {
     const inputValue = event.currentTarget.value;
     const regex = new RegExp('^[a-zA-Z\u00C0-\u00FF]*$');
@@ -62,12 +60,7 @@ function App() {
       }
     }
   };
-  {
-    /*const handleButton = (event) => {
-    event.preventDefault();
-    setNumberOfErrors(numberOfErrors + 1);
-  };*/
-  }
+
   return (
     <div className='page'>
       <Header />
@@ -75,28 +68,10 @@ function App() {
         <section>
           <SolutionLetters word={word} userLetters={userLetters} />
           <ErrorLetters word={word} userLetters={userLetters} />
-
-          <form className='form' onSubmit={handleSubmit}>
-            <label className='title' htmlFor='last-letter'>
-              Escribe una letra:
-            </label>
-            <input
-              autoComplete='off'
-              className='form__input'
-              maxLength='1'
-              type='text'
-              name='last-letter'
-              id='last-letter'
-              onChange={handleInput}
-              value={lastLetter}
-            />
-          </form>
+          <Form handleFunction={handleInput} lastLetter={lastLetter}/>
         </section>
         <Dummy numberOfErrors={calculateErorNumber()} />
         {endGame()}
-        {/*<form action=''>
-          <button onClick={handleButton}>Incrementar</button>
-  </form>*/}
       </main>
     </div>
   );
