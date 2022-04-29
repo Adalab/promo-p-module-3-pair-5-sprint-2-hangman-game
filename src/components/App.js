@@ -6,6 +6,10 @@ import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
 import Form from './Form';
+import Footer from './Footer';
+import { Route, Routes } from 'react-router-dom';
+import Instructions from './Instructions';
+import Options from './Options';
 
 function App() {
   //const [numberOfErrors, setNumberOfErrors] = useState(0);
@@ -64,15 +68,26 @@ function App() {
   return (
     <div className='page'>
       <Header />
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <section>
+              <SolutionLetters word={word} userLetters={userLetters} />
+              <ErrorLetters word={word} userLetters={userLetters} />
+              <Form handleFunction={handleInput} lastLetter={lastLetter} />
+            </section>
+          }
+        />
+        <Route path='/instructions' element={<Instructions />} />
+        <Route path='/options' element={<Options />} />
+      </Routes>
+
       <main className='main'>
-        <section>
-          <SolutionLetters word={word} userLetters={userLetters} />
-          <ErrorLetters word={word} userLetters={userLetters} />
-          <Form handleFunction={handleInput} lastLetter={lastLetter}/>
-        </section>
         <Dummy numberOfErrors={calculateErorNumber()} />
         {endGame()}
       </main>
+      <Footer />
     </div>
   );
 }
