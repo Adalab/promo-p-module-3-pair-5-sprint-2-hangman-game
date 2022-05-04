@@ -10,15 +10,24 @@ import Footer from './Footer';
 import { Route, Routes } from 'react-router-dom';
 import Instructions from './Instructions';
 import Options from './Options';
+import Loading from './Loading';
 
 function App() {
   //const [numberOfErrors, setNumberOfErrors] = useState(0);
   const [lastLetter, setLastLetter] = useState('');
   const [word, setWord] = useState('');
   const [userLetters, setUserLetters] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    getWordFromApi().then((data) => setWord(data));
-  }, []);
+    setIsLoading(true)
+    getWordFromApi()
+    .then((data) => {
+      setWord(data)
+      setIsLoading(false)
+    })
+    
+  },[]);
 
   const calculateErorNumber = () => {
     const wordLetters = word.split('');
@@ -84,6 +93,7 @@ function App() {
       </Routes>
 
       <main className='main'>
+        <Loading loading={isLoading}/>
         <Dummy numberOfErrors={calculateErorNumber()} />
         {endGame()}
       </main>
