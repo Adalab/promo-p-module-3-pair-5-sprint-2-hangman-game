@@ -84,7 +84,7 @@ function App() {
             <section>
               <SolutionLetters word={word} userLetters={userLetters} />
               <ErrorLetters word={word} userLetters={userLetters} />
-              <Form handleFunction={handleInput} lastLetter={lastLetter} />
+              <Form handleFunction={handleInput} lastLetter={lastLetter}/>
             </section>
           }
         />

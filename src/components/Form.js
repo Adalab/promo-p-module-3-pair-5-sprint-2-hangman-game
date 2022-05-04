@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Form (props) {
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -8,16 +10,27 @@ function Form (props) {
       Escribe una letra:
     </label>
     <input
-      autoComplete='off'
+      autoComplete={props.auto}
       className='form__input'
-      maxLength='1'
-      type='text'
+      maxLength={props.max}
+      type={props.inputType}
       name='last-letter'
       id='last-letter'
       onChange={props.handleFunction}
       value={props.lastLetter}
     />
   </form>);
+}
+
+Form.defaultProps = {
+  inputType: "text",
+  auto: 'off',
+  max: '1',
+}
+
+Form.propTypes = {
+  max: PropTypes.string,
+  handleFunction: PropTypes.func,
 }
 
 export default Form;

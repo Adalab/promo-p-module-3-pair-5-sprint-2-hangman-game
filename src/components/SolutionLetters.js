@@ -1,9 +1,9 @@
 import '../styles/components/Letters.scss';
-function SolutionLetters(props) {
+function SolutionLetters({word, userLetters}) {
   const renderSolutionLetters = () => {
-    const wordLetters = props.word.split('');
+    const wordLetters = word.split('');
     return wordLetters.map((wordletter, index) => {
-      if (props.userLetters.includes(wordletter)) {
+      if (userLetters.includes(wordletter)) {
         return (
           <li className='letter' key={index}>
             {wordletter}
